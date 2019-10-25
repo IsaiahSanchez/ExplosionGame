@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8652064928336269822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0, z: 0}
+  m_LocalPosition: {x: 0.75, y: 0, z: 0}
   m_LocalScale: {x: 0.24205697, y: 0.066346146, z: 1}
   m_Children:
   - {fileID: 3478045139293410947}
@@ -134,3 +134,4 @@ MonoBehaviour:
   ShotSpawnLocation: {fileID: 3478045139293410947}
   infiniteAmmo: 1
   currentAmmo: 5
+  maxAmmo: 0

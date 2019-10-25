@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9053102738249904378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0, z: 0}
-  m_LocalScale: {x: 0.8211339, y: 0.2489, z: 1}
+  m_LocalPosition: {x: 0.85, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_Children:
   - {fileID: 954700377026782424}
   m_Father: {fileID: 0}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fa61cfacce39345498dba8541b9744a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60f08558dbe5dda4ba94fcf743563d0f, type: 3}
   m_Color: {r: 0.6603774, g: 0.6514448, b: 0.6198825, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,11 +94,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554ddd619a6cafe498d5469b4d180de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerGun: 1
+  gunShotSound: {fileID: 0}
   timeInBetweenShot: 0.8
   Bullet: {fileID: 8045501364575598073, guid: ec65ba0b448ff724c920d70eab9812a7, type: 3}
   ShotSpawnLocation: {fileID: 954700377026782424}
   infiniteAmmo: 0
   currentAmmo: 5
+  maxAmmo: 0
 --- !u!1 &9209236926376965606
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9209236926376965606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.133, y: 0, z: 0}
+  m_LocalPosition: {x: 0.214, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9053102738249904372}

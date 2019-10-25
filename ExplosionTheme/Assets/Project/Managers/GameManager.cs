@@ -146,13 +146,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         RoundTextOpacity += Time.deltaTime * fadeInModifier;
         //set both opacity
-        RoundText.color = new Vector4(0, 0, 0, RoundTextOpacity);
-        RoundNumberText.color = new Vector4(0, 0, 0, RoundTextOpacity);
+        RoundText.color = new Vector4(RoundText.color.r, RoundText.color.g, RoundText.color.b, RoundTextOpacity);
+        RoundNumberText.color = new Vector4(RoundNumberText.color.r, RoundNumberText.color.g, RoundNumberText.color.b, RoundTextOpacity);
         if (RoundTextOpacity >= 1f)
         {
             RoundTextOpacity = 1f;
-            RoundText.color = new Vector4(0, 0, 0, RoundTextOpacity);
-            RoundNumberText.color = new Vector4(0, 0, 0, RoundTextOpacity);
+            RoundText.color = new Vector4(RoundText.color.r, RoundText.color.g, RoundText.color.b, RoundTextOpacity);
+            RoundNumberText.color = new Vector4(RoundNumberText.color.r, RoundNumberText.color.g, RoundNumberText.color.b, RoundTextOpacity);
         }
         else
         {
@@ -165,13 +165,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         RoundTextOpacity -= Time.deltaTime * fadeInModifier;
         //set both opacity
-        RoundText.color = new Vector4(0, 0, 0, RoundTextOpacity);
-        RoundNumberText.color = new Vector4(0, 0, 0, RoundTextOpacity);
+        RoundText.color = new Vector4(RoundText.color.r, RoundText.color.g, RoundText.color.b, RoundTextOpacity);
+        RoundNumberText.color = new Vector4(RoundNumberText.color.r, RoundNumberText.color.g, RoundNumberText.color.b, RoundTextOpacity);
         if (RoundTextOpacity <= 0)
         {
             RoundTextOpacity = 0;
-            RoundText.color = new Vector4(0, 0, 0, RoundTextOpacity);
-            RoundNumberText.color = new Vector4(0, 0, 0, RoundTextOpacity);
+            RoundText.color = new Vector4(RoundText.color.r, RoundText.color.g, RoundText.color.b, RoundTextOpacity);
+            RoundNumberText.color = new Vector4(RoundNumberText.color.r, RoundNumberText.color.g, RoundNumberText.color.b, RoundTextOpacity);
         }
         else
         {

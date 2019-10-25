@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     protected Player playerRef;
     protected Rigidbody2D mybody;
 
-    private Vector2 currentAim = new Vector2(0, 0);
+    protected Vector2 currentAim = new Vector2(0, 0);
 
     // Start is called before the first frame update
     void Start()
