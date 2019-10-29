@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void handleRepelForce()
     {
-        float weight = 1f;
         foreach (Enemy current in comrades)
         {
             if (current != this)
@@ -67,7 +66,6 @@ public class Enemy : MonoBehaviour
                     Vector2 distance = transform.position - current.transform.position;
                     if (distance.magnitude < 1)
                     {
-                        // ((mybody.velocity.normalized + distance.normalized) / 2)
                         currentAim += distance.normalized;
                         mybody.velocity = currentAim * movementSpeed;
                     }

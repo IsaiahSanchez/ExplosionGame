@@ -46,6 +46,7 @@ public class ShooterEnemy : Enemy
     {
         if (playerRef != null)
         {
+            mybody.velocity = currentAim * movementSpeed;
             if (isStopped == false)
             {
 
@@ -54,12 +55,13 @@ public class ShooterEnemy : Enemy
                 if ((tempDistance > HoverDistanceFromPlayer))
                 {
                     //move towards enemy if not within a certain distance
-                    mybody.velocity = (playerRef.transform.position - transform.position).normalized * movementSpeed;
+                    currentAim = (playerRef.transform.position - transform.position).normalized;
+
                 }
                 else if (tempDistance < HoverDistanceFromPlayer)
                 {
                     // and move out if within
-                    mybody.velocity = -(playerRef.transform.position - transform.position).normalized * movementSpeed;
+                    currentAim = -(playerRef.transform.position - transform.position).normalized;
                 }
 
             }
@@ -71,6 +73,7 @@ public class ShooterEnemy : Enemy
                 if (isStopped == false)
                 {
                     mybody.velocity = new Vector2(0, 0);
+                    currentAim = Vector2.zero;
                 }
                 isStopped = true;
             }
