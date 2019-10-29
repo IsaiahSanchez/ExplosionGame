@@ -122,20 +122,20 @@ public class Player : MonoBehaviour
 
     private Vector2 getMouseInWorldCoords()
     {
-        Camera view = Camera.main;
-        Vector2 temp = view.ScreenToWorldPoint(Input.mousePosition);
-        return temp;
+            Camera view = Camera.main;
+            Vector2 temp = view.ScreenToWorldPoint(Input.mousePosition);
+            return temp;
     }
 
     private void CheckInputs()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetButtonDown("Fire"))
         {
             FireGun();
             isHoldingTrigger = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetButtonUp("Fire"))
         {
             isHoldingTrigger = false;
         }

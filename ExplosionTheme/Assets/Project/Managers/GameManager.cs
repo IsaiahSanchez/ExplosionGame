@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -43,8 +44,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
 
     public void playerAmmoHasChanged(float ammo, float ammoMax)
     {
