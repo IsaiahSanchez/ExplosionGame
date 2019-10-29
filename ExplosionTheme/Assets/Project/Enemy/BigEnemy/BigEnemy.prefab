@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795671871285252317}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7876111, y: 1.4517533, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -0.027, y: -0.038, z: 0}
+  m_LocalScale: {x: 1.2879, y: 1.6294568, z: 1}
   m_Children: []
   m_Father: {fileID: 1795671872817137312}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &1795671871285252319
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -69,8 +69,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300010, guid: 5db4468029b9a6048bfddd424be5b61e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fdfd72b40ddbd9649bf0c947316ad51d, type: 3}
+  m_Color: {r: 0, g: 0.06305146, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -192,6 +192,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerDamager
       objectReference: {fileID: 0}
+    - target: {fileID: 1222059484802256506, guid: f1439cc6871391949b924b80842e72d3,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222059484802256506, guid: f1439cc6871391949b924b80842e72d3,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.8796767
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222059484802256506, guid: f1439cc6871391949b924b80842e72d3,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.651751
+      objectReference: {fileID: 0}
     - target: {fileID: 5314788239988823139, guid: f1439cc6871391949b924b80842e72d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -246,21 +261,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222059484802256506, guid: f1439cc6871391949b924b80842e72d3,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222059484802256506, guid: f1439cc6871391949b924b80842e72d3,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.8796767
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222059484802256506, guid: f1439cc6871391949b924b80842e72d3,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.651751
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1439cc6871391949b924b80842e72d3, type: 3}
