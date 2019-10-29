@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]private int DamageAmount = 10;
     [SerializeField]protected float movementSpeed = 10f;
     [SerializeField]private float health = 10f;
+    [SerializeField]private PlayerDamager DamageBox;
 
     public AudioClip enemyHurt;
     public AudioClip enemyDead;
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         comrades.Add(this);
         canBeDamaged = true;
+        DamageBox.DamageAmount = DamageAmount;
         mybody = gameObject.GetComponent<Rigidbody2D>();
         StartCoroutine(checkForPlayer());
     }
@@ -103,14 +105,6 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(invulnerableTime);
         canBeDamaged = true;
-    }
-
-    public void OnTriggerEnter2D(Collider2D target)
-    {
-        if (target.tag == "Player")
-        {
-            target.GetComponent<Player>().takeDamage(DamageAmount);
-        }
     }
 
     private IEnumerator checkForPlayer()

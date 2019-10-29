@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
 
         //go to main menu
         ClearBeforeReset();
+        Destroy(MusicSingleton.Instance.gameObject);
         SceneManager.LoadScene(0);
 
     }
@@ -130,6 +131,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(coFadeInRoundNum());
         RoundNumberText.text = roundNumber.ToString();
+        AudioManager.instance.PlaySound("RoundChange");
     }
     private IEnumerator coFadeInRoundNum()
     {
