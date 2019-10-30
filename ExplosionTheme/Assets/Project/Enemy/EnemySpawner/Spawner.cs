@@ -7,10 +7,12 @@ public class Spawner : MonoBehaviour
     public static List<Spawner> spawners = new List<Spawner>();
 
     //list
-    [SerializeField]private List<Enemy> whatToSpawn = new List<Enemy>();
+    [SerializeField] private List<Enemy> whatToSpawn = new List<Enemy>();
+
+    [SerializeField] Transform farRight, upTop;
 
     //chance to pause
-    [SerializeField]private float ChanceToSkipOutOfOneHundred = 20f;
+    [SerializeField] private float ChanceToSkipOutOfOneHundred = 20f;
 
     public bool isSpawning = false;
 
@@ -76,10 +78,19 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            Instantiate(whatToSpawn[0], transform.position, transform.rotation);
+            Instantiate(whatToSpawn[0], getNewSpawnPosition(), transform.rotation);
             whatToSpawn.RemoveAt(0);
         }
     }
+
+    private Vector2 getNewSpawnPosition()
+    {
+        //pick random location based on x and y
+        float xPos = Random.Range(transform.position.x,farRight.position.x);
+        float yPos = Random.Range(transform.position.y,upTop.position.y);
+
+        return new Vector2(xPos, yPos);
+    } 
 
     //setters
     public void AddNewEnemy(Enemy nextEnemy)

@@ -15,8 +15,9 @@ public class ShooterEnemy : Enemy
     private float timer = 4f;
     [SerializeField]private float MaxTimeInBetweenShots = 4f;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         //pick gun out and equip
         if (gunsToChoose.Count > 0)
         {
@@ -25,20 +26,24 @@ public class ShooterEnemy : Enemy
             CurrentGunRef.isPlayerGun = false;
             CurrentGunRef.gameObject.layer = 12;
         }
+        
     }
 
     protected override void FixedUpdate()
     {
-        handleShooterMovement();
-        handleRepelForce();
-
-        aimAtPlayer();
-
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (isSpawnedIn == true)
         {
-            pullTrigger();
-            timer = MaxTimeInBetweenShots;
+            handleShooterMovement();
+            handleRepelForce();
+
+            aimAtPlayer();
+
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                pullTrigger();
+                timer = MaxTimeInBetweenShots;
+            }
         }
     }
 

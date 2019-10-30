@@ -10,10 +10,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]protected float movementSpeed = 10f;
     [SerializeField]private float health = 10f;
     [SerializeField]private PlayerDamager DamageBox;
+    [SerializeField]private SpriteRenderer mySprite;
+    [SerializeField]private GameObject spawnInAnimation;
 
-    public AudioClip enemyHurt;
-    public AudioClip enemyDead;
-
+    private GameObject spawnInAnimationRef;
     private bool canBeDamaged = true;
     private float invulnerableTime = 0.05f;
 
@@ -21,27 +21,45 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D mybody;
 
     protected Vector2 currentAim = new Vector2(0, 0);
+    protected bool isSpawnedIn = false;
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Awake()
     {
-        comrades.Add(this);
-        canBeDamaged = true;
-        DamageBox.DamageAmount = DamageAmount;
+        mySprite.enabled = false;
         mybody = gameObject.GetComponent<Rigidbody2D>();
+        comrades.Add(this);
         StartCoroutine(checkForPlayer());
+        StartCoroutine(spawnIn());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator spawnIn()
     {
+        //spawn animation
+        spawnInAnimationRef = Instantiate(spawnInAnimation, transform.position, Quaternion.identity);
+        spawnInAnimationRef.transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+
+        yield return new WaitForSeconds(2f);
+        //after waiting 
+        canBeDamaged = true;
+        mySprite.enabled = true;
+        GetComponent<Collider2D>().enabled = true;
+        DamageBox.GetComponent<Collider2D>().enabled = true;
+        DamageBox.DamageAmount = DamageAmount;
+        isSpawnedIn = true;
+
+        yield return new WaitForSeconds(.25f);
+
+        Destroy(spawnInAnimationRef);
 
     }
 
     protected virtual void FixedUpdate()
     {
-        handleMovement();
-        handleRepelForce();
+        if (isSpawnedIn == true)
+        {
+            handleMovement();
+            handleRepelForce();
+        }
     }
 
     private void handleMovement()

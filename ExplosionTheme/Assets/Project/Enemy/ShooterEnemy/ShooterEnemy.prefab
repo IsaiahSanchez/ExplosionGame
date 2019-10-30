@@ -73,8 +73,9 @@ MonoBehaviour:
   movementSpeed: 2
   health: 9
   DamageBox: {fileID: 2905811452060697828}
-  enemyHurt: {fileID: 0}
-  enemyDead: {fileID: 0}
+  mySprite: {fileID: 1986279358986267292}
+  spawnInAnimation: {fileID: 3720704783100569996, guid: 324f3f294d97a2c4cacb2187ced69350,
+    type: 3}
   hand: {fileID: 1986279358731088919}
   gunsToChoose:
   - {fileID: 2234408086879588112, guid: 53b68cbcc15863040bb9789a96bfc850, type: 3}

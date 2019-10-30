@@ -178,8 +178,9 @@ MonoBehaviour:
   movementSpeed: 0.5
   health: 25
   DamageBox: {fileID: 486054270269298406}
-  enemyHurt: {fileID: 0}
-  enemyDead: {fileID: 0}
+  mySprite: {fileID: 1795671871285252319}
+  spawnInAnimation: {fileID: 3720704783100569996, guid: 324f3f294d97a2c4cacb2187ced69350,
+    type: 3}
 --- !u!1001 &3381442279139401117
 PrefabInstance:
   m_ObjectHideFlags: 0

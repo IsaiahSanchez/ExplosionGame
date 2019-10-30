@@ -39,7 +39,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069442322}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -250,5 +250,6 @@ MonoBehaviour:
   movementSpeed: 1
   health: 8
   DamageBox: {fileID: 1069442323}
-  enemyHurt: {fileID: 8300000, guid: bc0d51e1e54d134488aaa81ec3342857, type: 3}
-  enemyDead: {fileID: 8300000, guid: 2d1350c013157ac4cbe3f5b472ab5601, type: 3}
+  mySprite: {fileID: 1370005743}
+  spawnInAnimation: {fileID: 3720704783100569996, guid: 324f3f294d97a2c4cacb2187ced69350,
+    type: 3}
