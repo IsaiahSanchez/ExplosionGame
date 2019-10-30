@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private Vector2 getMouseInWorldCoords()
+    public Vector2 getMouseInWorldCoords()
     {
             Camera view = Camera.main;
             Vector2 temp = view.ScreenToWorldPoint(Input.mousePosition);

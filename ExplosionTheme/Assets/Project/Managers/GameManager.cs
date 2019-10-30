@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]Text RoundText, RoundNumberText, ammoText;
     [SerializeField]Slider playerHealthBar, ammoBar;
+    [SerializeField] GameObject cursorGraphic;
     private float RoundTextOpacity = 0f, fadeInModifier = 1f;
 
     private float RoundOneStartTime = 2f;
+    private GameObject currentCursor;
 
     public bool isTestMode = false;
     private bool PlayerSelectedSomethingAlready = false;
@@ -39,12 +41,14 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(waitForRoundStart());
         }
+        currentCursor = Instantiate(cursorGraphic, Player.instance.getMouseInWorldCoords(), Quaternion.identity);
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        currentCursor.transform.position = Player.instance.getMouseInWorldCoords();
     }
 
 
@@ -91,7 +95,8 @@ public class GameManager : MonoBehaviour
         
             PlayerSelectedSomethingAlready = true;
             StartCoroutine(coReloadGame());
-        
+            Cursor.visible = false;
+
     }
     private IEnumerator coReloadGame()
     {
@@ -114,6 +119,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Cursor.visible = true;
         StartCoroutine(coGameOver());
     }
     private IEnumerator coGameOver()
