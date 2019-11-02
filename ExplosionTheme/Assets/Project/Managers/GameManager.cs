@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     public bool isTestMode = false;
     private bool PlayerSelectedSomethingAlready = false;
+    private bool canPause = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         currentCursor.transform.position = Player.instance.getMouseInWorldCoords();
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && canPause == true)
         {
             pauseGame();
         }
@@ -72,19 +73,26 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(RoundOneStartTime);
         SpawnManager.instance.StartNewRound();
+        canPause = true;
+    }
+
+    public void MousedOver()
+    {
+        AudioManager.instance.PlaySound("MenuButtonOver");
     }
 
     public void MainMenu()
     {
-        
-            PlayerSelectedSomethingAlready = true;
-            StartCoroutine(coMainMenu());
+        AudioManager.instance.PlaySound("MenuButtonClick");    
+        PlayerSelectedSomethingAlready = true;
+        StartCoroutine(coMainMenu());
         
     }
     private IEnumerator coMainMenu()
     {
         //set gamespeed to full
         Time.timeScale = 1f;
+        canPause = false;
         SceneFader.instance.FadeToBlack();
         yield return new WaitForSecondsRealtime(1f);
 
@@ -97,16 +105,17 @@ public class GameManager : MonoBehaviour
 
     public void reloadGame()
     {
-        
-            PlayerSelectedSomethingAlready = true;
-            StartCoroutine(coReloadGame());
-            Cursor.visible = false;
+        AudioManager.instance.PlaySound("MenuButtonClick");
+        PlayerSelectedSomethingAlready = true;
+        StartCoroutine(coReloadGame());
+        Cursor.visible = false;
 
     }
     private IEnumerator coReloadGame()
     {
         //set gamespeed to full
         Time.timeScale = 1f;
+        canPause = false;
         SceneFader.instance.FadeToBlack();
         yield return new WaitForSecondsRealtime(1f);
 
@@ -117,6 +126,7 @@ public class GameManager : MonoBehaviour
 
     public void pauseGame()
     {
+        AudioManager.instance.PlaySound("MenuButtonClick");
         //set gamespeed to 0
         Time.timeScale = 0;
         //set panel to active
@@ -126,6 +136,7 @@ public class GameManager : MonoBehaviour
 
     public void continuePlaying()
     {
+        AudioManager.instance.PlaySound("MenuButtonClick");
         //set gamespeed to 0
         Time.timeScale = 1;
         //set panel to active
@@ -136,6 +147,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Cursor.visible = true;
+        canPause = false;
         StartCoroutine(coGameOver());
     }
     private IEnumerator coGameOver()
