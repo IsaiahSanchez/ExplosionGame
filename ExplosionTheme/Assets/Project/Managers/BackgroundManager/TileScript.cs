@@ -21,6 +21,7 @@ public class TileScript : MonoBehaviour
         BackgroundManager.instance.unSpawnedObjects.Remove(gameObject);
         BackgroundManager.instance.spawnedInObjects.Add(gameObject);
         spawnedIn = true;
+        AudioManager.instance.PlaySound("TileSpawnIn");
     }
 
     public void spawnOut()

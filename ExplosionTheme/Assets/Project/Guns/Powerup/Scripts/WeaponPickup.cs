@@ -20,7 +20,8 @@ public class WeaponPickup : MonoBehaviour
 
     public void setWeapon(ScripWeapon weaponChosen)
     {
-        weaponChoice = weaponChosen;
+            weaponChoice = weaponChosen;
+        
     }
 
     public void Delete()

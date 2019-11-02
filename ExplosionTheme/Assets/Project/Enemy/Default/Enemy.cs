@@ -34,9 +34,13 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator spawnIn()
     {
+        GetComponent<Collider2D>().enabled = false;
+        DamageBox.GetComponent<Collider2D>().enabled = false;
         //spawn animation
         spawnInAnimationRef = Instantiate(spawnInAnimation, transform.position, Quaternion.identity);
         spawnInAnimationRef.transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+        AudioManager.instance.PlaySound("EnemySpawnIn");
+        
 
         yield return new WaitForSeconds(2f);
         //after waiting 

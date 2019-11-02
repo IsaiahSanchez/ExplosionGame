@@ -46,7 +46,29 @@ public class PowerUpSpawner : MonoBehaviour
             weaponRef.GetComponent<WeaponPickup>().Delete();
         }
         weaponRef = Instantiate(whatToSpawn, WhereToSpawn,transform.rotation);
-        weaponRef.GetComponent<WeaponPickup>().setWeapon(typesOfWeapons[Random.Range(0, typesOfWeapons.Count)]);
+
+        if (SpawnManager.instance.round >= 4)
+        {
+            weaponRef.GetComponent<WeaponPickup>().setWeapon(typesOfWeapons[Random.Range(0, typesOfWeapons.Count)]);
+        }
+        else
+        {
+            switch (SpawnManager.instance.round)
+            {
+                case 1:
+                    weaponRef.GetComponent<WeaponPickup>().setWeapon(typesOfWeapons[0]);
+                    break;
+                case 2:
+                    weaponRef.GetComponent<WeaponPickup>().setWeapon(typesOfWeapons[1]);
+                    break;
+                case 3:
+                    weaponRef.GetComponent<WeaponPickup>().setWeapon(typesOfWeapons[2]);
+                    break;
+                default:
+                    weaponRef.GetComponent<WeaponPickup>().setWeapon(typesOfWeapons[0]);
+                    break;
+            }
+        }
     }
 
 

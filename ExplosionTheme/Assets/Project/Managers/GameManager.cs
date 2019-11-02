@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         currentCursor.transform.position = Player.instance.getMouseInWorldCoords();
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            pauseGame();
+        }
     }
 
 
@@ -115,6 +120,17 @@ public class GameManager : MonoBehaviour
         //set gamespeed to 0
         Time.timeScale = 0;
         //set panel to active
+        pauseMenu.SetActive(true);
+        Cursor.visible = true;
+    }
+
+    public void continuePlaying()
+    {
+        //set gamespeed to 0
+        Time.timeScale = 1;
+        //set panel to active
+        pauseMenu.SetActive(false);
+        Cursor.visible = false;
     }
 
     public void GameOver()

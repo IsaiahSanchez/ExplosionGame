@@ -30,29 +30,32 @@ public class CameraShake : MonoBehaviour
 
     private void Update()
     {
-        if (shouldShake == true)
+        if (Time.timeScale != 0)
         {
-            duration -= Time.deltaTime;
-            //setNextLocation
-            ShakeX();
-            ShakeY();
-            rotateShake();
-
-            //move
-            transform.position = new Vector3(startingLocation.x + nextXModifier, startingLocation.y + nextYModifier, startingLocation.z);
-            transform.eulerAngles = new Vector3(0, 0, nextRotationModifier);
-
-
-            //test if should move back and set should shake to false
-            if (duration <= 0)
+            if (shouldShake == true)
             {
-                resetShake();
+                duration -= Time.deltaTime;
+                //setNextLocation
+                ShakeX();
+                ShakeY();
+                rotateShake();
 
+                //move
+                transform.position = new Vector3(startingLocation.x + nextXModifier, startingLocation.y + nextYModifier, startingLocation.z);
+                transform.eulerAngles = new Vector3(0, 0, nextRotationModifier);
+
+
+                //test if should move back and set should shake to false
+                if (duration <= 0)
+                {
+                    resetShake();
+
+                }
             }
-        }
-        else
-        {
-            startingLocation = transform.position;
+            else
+            {
+                startingLocation = transform.position;
+            }
         }
     }
 
