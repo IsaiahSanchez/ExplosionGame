@@ -15,11 +15,13 @@ public class WeaponPickup : MonoBehaviour
         Graphic.GetComponent<SpriteRenderer>().sprite = null;
         spawnedWeapon = Instantiate(weaponChoice.WeaponRef, transform.position, transform.rotation);
         spawnedWeapon.transform.localScale = new Vector3(spawnedWeapon.transform.localScale.x * GraphicScale, spawnedWeapon.transform.localScale.y * GraphicScale, 1);
+        spawnedWeapon.transform.parent = Graphic.gameObject.transform;
     }
 
     public void setWeapon(ScripWeapon weaponChosen)
     {
-        weaponChoice = weaponChosen;
+            weaponChoice = weaponChosen;
+        
     }
 
     public void Delete()
@@ -35,6 +37,7 @@ public class WeaponPickup : MonoBehaviour
             if (weaponChoice != null)
             {
                 target.GetComponent<Player>().ChangeGun(weaponChoice.WeaponRef);
+                AudioManager.instance.PlaySound("WeaponCollect");
                 Delete();
             }
 

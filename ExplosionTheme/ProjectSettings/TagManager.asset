@@ -19,8 +19,8 @@ TagManager:
   - EnemyProjectile
   - Explosion
   - Enemy
-  - 
-  - 
+  - EnemyDamager
+  - BackgroundTiles
   - 
   - 
   - 

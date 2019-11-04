@@ -15,8 +15,9 @@ public class ShooterEnemy : Enemy
     private float timer = 4f;
     [SerializeField]private float MaxTimeInBetweenShots = 4f;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         //pick gun out and equip
         if (gunsToChoose.Count > 0)
         {
@@ -25,20 +26,24 @@ public class ShooterEnemy : Enemy
             CurrentGunRef.isPlayerGun = false;
             CurrentGunRef.gameObject.layer = 12;
         }
+        
     }
 
     protected override void FixedUpdate()
     {
-        handleShooterMovement();
-        handleRepelForce();
-
-        aimAtPlayer();
-
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (isSpawnedIn == true)
         {
-            pullTrigger();
-            timer = MaxTimeInBetweenShots;
+            handleShooterMovement();
+            handleRepelForce();
+
+            aimAtPlayer();
+
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                pullTrigger();
+                timer = MaxTimeInBetweenShots;
+            }
         }
     }
 
@@ -46,6 +51,7 @@ public class ShooterEnemy : Enemy
     {
         if (playerRef != null)
         {
+            mybody.velocity = currentAim * movementSpeed;
             if (isStopped == false)
             {
 
@@ -54,12 +60,13 @@ public class ShooterEnemy : Enemy
                 if ((tempDistance > HoverDistanceFromPlayer))
                 {
                     //move towards enemy if not within a certain distance
-                    mybody.velocity = (playerRef.transform.position - transform.position).normalized * movementSpeed;
+                    currentAim = (playerRef.transform.position - transform.position).normalized;
+
                 }
                 else if (tempDistance < HoverDistanceFromPlayer)
                 {
                     // and move out if within
-                    mybody.velocity = -(playerRef.transform.position - transform.position).normalized * movementSpeed;
+                    currentAim = -(playerRef.transform.position - transform.position).normalized;
                 }
 
             }
@@ -71,6 +78,7 @@ public class ShooterEnemy : Enemy
                 if (isStopped == false)
                 {
                     mybody.velocity = new Vector2(0, 0);
+                    currentAim = Vector2.zero;
                 }
                 isStopped = true;
             }

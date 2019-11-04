@@ -13,6 +13,8 @@ public class Grenade : Projectile
     {
         calculateSlowDown(Time.deltaTime);
         checkTime();
+
+        transform.Rotate(new Vector3(0, 0, -1));
     }
 
     private void calculateSlowDown(float timePassed)

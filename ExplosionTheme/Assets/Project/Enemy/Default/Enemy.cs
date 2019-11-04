@@ -9,37 +9,63 @@ public class Enemy : MonoBehaviour
     [SerializeField]private int DamageAmount = 10;
     [SerializeField]protected float movementSpeed = 10f;
     [SerializeField]private float health = 10f;
+    [SerializeField]private PlayerDamager DamageBox;
+    [SerializeField]private SpriteRenderer mySprite;
+    [SerializeField]private GameObject spawnInAnimation;
+    [SerializeField] private float sizeOfSpawnX = 1 , sizeOfSpawnY = 1;
 
-    public AudioClip enemyHurt;
-    public AudioClip enemyDead;
 
+    private GameObject spawnInAnimationRef;
     private bool canBeDamaged = true;
     private float invulnerableTime = 0.05f;
 
     protected Player playerRef;
     protected Rigidbody2D mybody;
 
-    private Vector2 currentAim = new Vector2(0, 0);
+    protected Vector2 currentAim = new Vector2(0, 0);
+    protected bool isSpawnedIn = false;
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Awake()
     {
-        comrades.Add(this);
-        canBeDamaged = true;
+        mySprite.gameObject.SetActive(false);
         mybody = gameObject.GetComponent<Rigidbody2D>();
+        comrades.Add(this);
         StartCoroutine(checkForPlayer());
+        StartCoroutine(spawnIn());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator spawnIn()
     {
+        GetComponent<Collider2D>().enabled = false;
+        DamageBox.GetComponent<Collider2D>().enabled = false;
+        //spawn animation
+        spawnInAnimationRef = Instantiate(spawnInAnimation, transform.position, Quaternion.identity);
+        spawnInAnimationRef.transform.localScale = new Vector2(sizeOfSpawnX, sizeOfSpawnY);
+        AudioManager.instance.PlaySound("EnemySpawnIn");
+        
+
+        yield return new WaitForSeconds(2f);
+        //after waiting 
+        canBeDamaged = true;
+        mySprite.gameObject.SetActive(true);
+        GetComponent<Collider2D>().enabled = true;
+        DamageBox.GetComponent<Collider2D>().enabled = true;
+        DamageBox.DamageAmount = DamageAmount;
+        isSpawnedIn = true;
+
+        yield return new WaitForSeconds(.25f);
+
+        Destroy(spawnInAnimationRef);
 
     }
 
     protected virtual void FixedUpdate()
     {
-        handleMovement();
-        handleRepelForce();
+        if (isSpawnedIn == true)
+        {
+            handleMovement();
+            handleRepelForce();
+        }
     }
 
     private void handleMovement()
@@ -55,7 +81,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void handleRepelForce()
     {
-        float weight = 1f;
         foreach (Enemy current in comrades)
         {
             if (current != this)
@@ -65,7 +90,6 @@ public class Enemy : MonoBehaviour
                     Vector2 distance = transform.position - current.transform.position;
                     if (distance.magnitude < 1)
                     {
-                        // ((mybody.velocity.normalized + distance.normalized) / 2)
                         currentAim += distance.normalized;
                         mybody.velocity = currentAim * movementSpeed;
                     }
@@ -103,14 +127,6 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(invulnerableTime);
         canBeDamaged = true;
-    }
-
-    public void OnTriggerEnter2D(Collider2D target)
-    {
-        if (target.tag == "Player")
-        {
-            target.GetComponent<Player>().takeDamage(DamageAmount);
-        }
     }
 
     private IEnumerator checkForPlayer()

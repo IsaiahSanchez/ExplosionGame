@@ -18,8 +18,14 @@ public class MainMenuManager : MonoBehaviour
         SceneFader.instance.FadeToClear();
     }
 
+    public void MousedOver()
+    {
+        AudioManager.instance.PlaySound("MenuButtonOver");
+    }
+
     public void StartGame()
     {
+        AudioManager.instance.PlaySound("MenuButtonClick");
         StartCoroutine(coStartGame());
     }
     private IEnumerator coStartGame()

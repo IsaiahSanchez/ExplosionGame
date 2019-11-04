@@ -13,12 +13,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]private Text roundNumberText;
     [SerializeField]private Text playerHealthText;
 
-    private int round = 0;
+    public int round = 0;
     private bool isListening = false;
     public bool hasStartedGame = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         if (instance == null)
         {
@@ -36,17 +35,6 @@ public class SpawnManager : MonoBehaviour
     {
         if (hasStartedGame == true)
         {
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Spawner.spawners.Clear();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                StartNewRound();
-            }
 
             if (isListening == true)
             {
@@ -81,12 +69,39 @@ public class SpawnManager : MonoBehaviour
         
         GameManager.instance.RoundHasChanged(round);
 
-        //generate List of Enemies for this round
-        GenerateEnemyList();
-
-        //distribute enemies to the spawners
-        DistributeEnemiesToSpawners();
-
+        if (round >= 4)
+        {
+            //generate List of Enemies for this round
+            GenerateEnemyList();
+            //distribute enemies to the spawners
+            DistributeEnemiesToSpawners();
+        }
+        else
+        {
+            switch (round)
+            {
+                case 1:
+                    generateTutorialRoundEnemyList(12, 0);
+                    List<int> temp = new List<int>();
+                    temp.Add(0); temp.Add(1);
+                    distributeTutorialEnemies(temp);
+                    break;
+                case 2:
+                    generateTutorialRoundEnemyList(10, 2);
+                    List<int> temp1 = new List<int>();
+                    temp1.Add(2); temp1.Add(3);
+                    distributeTutorialEnemies(temp1);
+                    break;
+                case 3:
+                    generateTutorialRoundEnemyList(8, 3);
+                    List<int> temp2 = new List<int>();
+                    temp2.Add(0); temp2.Add(1); temp2.Add(2); temp2.Add(3);
+                    distributeTutorialEnemies(temp2);
+                    break;
+                default:
+                    break;
+            }
+        }
         //start the round for each
         StartRound();
 
@@ -95,12 +110,29 @@ public class SpawnManager : MonoBehaviour
         StartListening();
     }
 
+    private void generateTutorialRoundEnemyList(int numberOfEnemies, int enemyType)
+    {
+        for (int index = 0; index < numberOfEnemies; index++)
+        {
+            MasterList.Add(ListOfEnemiesToSpawn[enemyType]);
+        }
+    }
+
+    private void distributeTutorialEnemies(List<int> indexOfSpawnersToDistributeTo)
+    {
+        while(MasterList.Count>0)
+        { 
+            Spawner.spawners[indexOfSpawnersToDistributeTo[Random.Range(0,indexOfSpawnersToDistributeTo.Count)]].AddNewEnemy(MasterList[0]);
+            MasterList.RemoveAt(0);
+        }
+    }
+
     private void GenerateEnemyList()
     {
         int numberOfEnemies = 0;
         //determine number of enemies based on round number
         //(x-3)^2-3
-        numberOfEnemies = ((round - 3) * (round - 3)) +8;
+        numberOfEnemies = (round - 3)*2;
         if (numberOfEnemies > 0)
         {
             for (int index = 0; index < numberOfEnemies; index++) 
