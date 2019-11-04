@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]private PlayerDamager DamageBox;
     [SerializeField]private SpriteRenderer mySprite;
     [SerializeField]private GameObject spawnInAnimation;
+    [SerializeField] private float sizeOfSpawnX = 1 , sizeOfSpawnY = 1;
+
 
     private GameObject spawnInAnimationRef;
     private bool canBeDamaged = true;
@@ -25,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
-        mySprite.enabled = false;
+        mySprite.gameObject.SetActive(false);
         mybody = gameObject.GetComponent<Rigidbody2D>();
         comrades.Add(this);
         StartCoroutine(checkForPlayer());
@@ -38,14 +40,14 @@ public class Enemy : MonoBehaviour
         DamageBox.GetComponent<Collider2D>().enabled = false;
         //spawn animation
         spawnInAnimationRef = Instantiate(spawnInAnimation, transform.position, Quaternion.identity);
-        spawnInAnimationRef.transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+        spawnInAnimationRef.transform.localScale = new Vector2(sizeOfSpawnX, sizeOfSpawnY);
         AudioManager.instance.PlaySound("EnemySpawnIn");
         
 
         yield return new WaitForSeconds(2f);
         //after waiting 
         canBeDamaged = true;
-        mySprite.enabled = true;
+        mySprite.gameObject.SetActive(true);
         GetComponent<Collider2D>().enabled = true;
         DamageBox.GetComponent<Collider2D>().enabled = true;
         DamageBox.DamageAmount = DamageAmount;

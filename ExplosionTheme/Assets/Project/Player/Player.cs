@@ -141,22 +141,22 @@ public class Player : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeGun(testGun);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeGun(testGun2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeGun(testGun3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            ChangeGun(testGun4);
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    ChangeGun(testGun);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    ChangeGun(testGun2);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    ChangeGun(testGun3);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    ChangeGun(testGun4);
+        //}
 
         
     }

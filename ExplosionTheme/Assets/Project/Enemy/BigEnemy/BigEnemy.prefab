@@ -179,8 +179,10 @@ MonoBehaviour:
   health: 25
   DamageBox: {fileID: 486054270269298406}
   mySprite: {fileID: 1795671871285252319}
-  spawnInAnimation: {fileID: 3720704783100569996, guid: 324f3f294d97a2c4cacb2187ced69350,
+  spawnInAnimation: {fileID: 5161933415156071978, guid: 8f153ed7cf000384cba8ec4198f1de0b,
     type: 3}
+  sizeOfSpawnX: 2
+  sizeOfSpawnY: 4
 --- !u!1001 &3381442279139401117
 PrefabInstance:
   m_ObjectHideFlags: 0

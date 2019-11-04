@@ -133,7 +133,7 @@ public class SpawnManager : MonoBehaviour
         int numberOfEnemies = 0;
         //determine number of enemies based on round number
         //(x-3)^2-3
-        numberOfEnemies = (round - 3)*3;
+        numberOfEnemies = (round - 3)*2;
         if (numberOfEnemies > 0)
         {
             for (int index = 0; index < numberOfEnemies; index++) 
