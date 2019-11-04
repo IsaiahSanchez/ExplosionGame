@@ -23,6 +23,11 @@ public class MainMenuManager : MonoBehaviour
         AudioManager.instance.PlaySound("MenuButtonOver");
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public void StartGame()
     {
         AudioManager.instance.PlaySound("MenuButtonClick");

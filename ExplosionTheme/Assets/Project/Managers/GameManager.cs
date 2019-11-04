@@ -9,11 +9,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Animator fadeToBlackAnim;
 
-    [SerializeField]GameObject gameOverPanel, pauseMenu;
+    [SerializeField]private GameObject gameOverPanel, pauseMenu;
 
-    [SerializeField]Text RoundText, RoundNumberText, ammoText;
-    [SerializeField]Slider playerHealthBar, ammoBar;
-    [SerializeField] GameObject cursorGraphic;
+    [SerializeField] private Text RoundText, RoundNumberText, ammoText;
+    [SerializeField] private Slider playerHealthBar, ammoBar;
+    [SerializeField] private GameObject cursorGraphic;
     private float RoundTextOpacity = 0f, fadeInModifier = 1f;
 
     private float RoundOneStartTime = 2f;
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
+        canPause = false;
         SceneFader.instance.FadeToClear();
 
         if (!isTestMode)
@@ -49,7 +50,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentCursor.transform.position = Player.instance.getMouseInWorldCoords();
+            currentCursor.transform.position = Player.instance.getMouseInWorldCoords();
+        
 
         if (Input.GetKeyDown(KeyCode.P) && canPause == true)
         {
@@ -79,6 +81,11 @@ public class GameManager : MonoBehaviour
     public void MousedOver()
     {
         AudioManager.instance.PlaySound("MenuButtonOver");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public void MainMenu()
