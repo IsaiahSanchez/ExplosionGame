@@ -17,8 +17,7 @@ public class SpawnManager : MonoBehaviour
     private bool isListening = false;
     public bool hasStartedGame = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         if (instance == null)
         {
